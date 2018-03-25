@@ -1,20 +1,17 @@
-server:
-  port: 8888
 info:
-  app:
     version: 1.0.0
+server:
+  port: 8001
 spring:
   application:
-    name: cloud-config
+    name: cloud-gateway
   cloud:
     config:
-      server:
-        git:
-          uri: https://github.com/zingson/zengs-cloud.git
-          default-label: master
-          search-paths: _config/
-          username:
-          password:
+      discovery:
+        enabled: true
+        service-id: cloud-config
+      label: master
+      profile: default
 eureka:
   client:
       service-url:
@@ -40,8 +37,4 @@ management:
           - scheduledtasks
           - mappings
           - metrics
-  endpoint:
-    metrics:
-      enabled: true
-
 
