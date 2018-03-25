@@ -40,7 +40,8 @@ Spring cloud 项目搭建基础模板。
 
 路径 |   说明
 -----|------
-/{name}-{profiles}.properties               |获取配置指定属性值  
+/{name}-{profiles}.yml               | 读取配置文件  
+/{label}/{name}-{profiles}.yml               | 读取配置文件  
 
 
 ## 接口文档 Swagger2
