@@ -1,0 +1,15 @@
+spring:
+  application:
+      name: cloud-gateway
+  cloud:
+    config:
+      discovery:
+        enabled: true
+        service-id: cloud-config
+      label: master
+      profile: test
+      uri: http://localhost:8889
+eureka:
+  client:
+      service-url:
+        defaultZone: http://127.0.0.1:9999/eureka/

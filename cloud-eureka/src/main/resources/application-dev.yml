@@ -1,0 +1,24 @@
+info:
+  version: 1.0
+server:
+  port: 9999
+spring:
+  application:
+    name: cloud-eureka
+eureka:
+  instance:
+    hostname: localhost
+    # status-page-url: http://${eureka.instance.hostname}:${server.port}/eureka/
+  server:
+    # 保护机制开关，默认true
+    enable-self-preservation: true
+  client:
+    service-url:
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+    register-with-eureka: false
+    fetch-registry: false
+# @Deprecated
+archaius:
+  deployment:
+    environment: dev
+    datacenter: cloud
