@@ -1,0 +1,77 @@
+group 'com.zengs.cloud'
+version '1.0'
+
+/**
+ * @Author Zengs
+ * @Date 2018-3-25
+ * @Description
+ *      构建Spring cloud 项目通用配置，未经测试请勿随意修改版本号。 微服务项目开发时，可直接使用此文件构建主项目。
+ */
+
+buildscript {
+    ext {
+        springBootVersion = '2.0.0.RELEASE'
+        springCloudVersion = 'Finchley.M9'
+    }
+    repositories {
+        jcenter()
+        maven {url 'https://repo.spring.io/libs-milestone'}
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+}
+
+apply plugin: 'idea'
+idea.project {
+    jdkName = '1.8'
+    languageLevel = '1.8'
+}
+
+allprojects {
+
+}
+
+subprojects {
+    apply plugin: 'java'
+
+    sourceCompatibility = 1.8
+    targetCompatibility = 1.8
+
+    [compileJava,compileTestJava,javadoc]*.options*.encoding = 'UTF-8'
+    compileJava*.options*.compilerArgs=[/*"-Xlint:unchecked",*/ "-g:vars", "-g:lines", "-g:source"]
+
+    repositories {
+        mavenCentral()
+        jcenter()
+        maven { url 'https://repo.spring.io/libs-milestone'}
+        //maven { url 'http://maven.aliyun.com/nexus/content/groups/public'}
+        //maven { url 'https://jitpack.io' }
+    }
+
+    // 'Spring boot' and 'spring cloud' dependencies plugins
+    apply plugin: 'org.springframework.boot'
+    apply plugin: "io.spring.dependency-management"
+    dependencyManagement {
+        imports {
+            mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+        }
+    }
+    dependencies {
+        compile 'org.springframework.boot:spring-boot-starter-web'
+        compile 'org.springframework.boot:spring-boot-starter-actuator'
+
+        compile 'org.springframework.cloud:spring-cloud-starter-netflix-hystrix'
+
+        compile fileTree(dir: 'src/main/resources/lib', include: ['*.jar'])
+        testCompile 'org.springframework.boot:spring-boot-starter-test'
+    }
+}
+
+/*
+project(':zuul-api-gateway'){
+    dependencies {
+        compile 'org.springframework.cloud:spring-cloud-starter-netflix-ribbon'
+    }
+}
+*/

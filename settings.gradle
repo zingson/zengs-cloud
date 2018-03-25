@@ -1,0 +1,8 @@
+rootProject.name = 'zengs-cloud'
+
+include 'cloud-config','cloud-eureka','cloud-gateway'
+include 'service-apidoc'
+
+
+
+
