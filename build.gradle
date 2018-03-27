@@ -63,7 +63,7 @@ subprojects {
 
         compile 'org.springframework.cloud:spring-cloud-starter-netflix-hystrix'
 
-        compile fileTree(dir: 'src/main/resources/lib', include: ['*.jar'])
+        compile fileTree(dir: 'lib', include: ['*.jar'])
         testCompile 'org.springframework.boot:spring-boot-starter-test'
     }
 }
